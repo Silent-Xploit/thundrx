@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
-	"thundrx/internal"
+	"github.com/Silent-Xploit/thundrx/internal"
 )
 
 func main() {
