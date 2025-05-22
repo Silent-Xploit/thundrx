@@ -1,4 +1,4 @@
-module thundrx
+module github.com/Silent-Xploit/thundrx
 
 go 1.21
 
