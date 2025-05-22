@@ -47,7 +47,7 @@ thundrx
 **Or clone and run directly:**
 
 ```bash
-git clone https://github.com/Silent-Xploit/ThunderX.git
+git clone https://github.com/Silent-Xploit/thundrx.git
 cd thundrx
 go run main.go
 ```
