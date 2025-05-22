@@ -1,7 +1,6 @@
 package internal
 
 import (
-	"fmt"
 	"os/exec"
 	"regexp"
 	"strings"
